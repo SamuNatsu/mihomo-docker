@@ -11,7 +11,7 @@ RUN wget $(\
 ) && gzip -d *.gz && mv mihomo-* mihomo && chmod +x mihomo
 
 # Bundle stage
-FROM scratch:latest
+FROM scratch
 
 # Copy mihomo
 COPY --from=build /mihomo /mihomo
