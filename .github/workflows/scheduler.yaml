@@ -15,6 +15,6 @@ jobs:
       - name: Get versions
         run: |
           echo LATEST_VERSION=$(curl -s https://api.github.com/repos/MetaCubeX/mihomo/releases/latest | jq -r '.tag_name') >> $GITHUB_ENV
-          echo CURRENT_VERSION=$(curl -s https://api.github.com/users/SamuNatsu/packages/container/mihomo-docker/versions -H "Authorization: Bearer {{ secrets.GITHUB_TOKEN }}") >> $GITHUB_ENV
+          echo CURRENT_VERSION=$(curl -s https://api.github.com/users/SamuNatsu/packages/container/mihomo-docker/versions -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}") >> $GITHUB_ENV
       - name: Print version
         run: echo $CURRENT_VERSION
