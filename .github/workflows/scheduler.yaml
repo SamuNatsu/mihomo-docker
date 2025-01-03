@@ -24,5 +24,14 @@ jobs:
               jq \
                 -r 'map(select(((.metadata.container.tags | length) > 0) and (.metadata.container.tags | map(test("^sha256-") | not) | all))) |.[0].metadata.container.tags[0]' \
             ) >> $GITHUB_ENV
-      - name: Print version
-        run: echo $CURRENT_VERSION
+      - name: Push tag
+        if: ${{ env.LATEST_VERSION != env.CURRENT_VERSION }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/${{ env.LATEST_VERSION }}',
+              sha: context.sha
+            })
