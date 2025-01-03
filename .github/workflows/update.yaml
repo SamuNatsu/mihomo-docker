@@ -1,9 +1,6 @@
 name: Update image
 
-on:
-  push:
-    tags:
-      - v*
+on: repository_dispatch
 
 env:
   REGISTRY: ghcr.io
