@@ -1,14 +1,14 @@
 name: Scheduler
-on: workflow_dispatch
+on:
+  schedule:
+    - cron: 0 0 * * *
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      packages: write
-      attestations: write
-      id-token: write
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
