@@ -22,16 +22,7 @@ jobs:
                 -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
               | \
               jq \
-                -r '\
-                  map(\
-                    select(\
-                      ((.metadata.container.tags | length) > 0)\
-                      and\
-                      (.metadata.container.tags | map(test("^sha256-") | not) | all)\
-                    )\
-                  )\
-                  |\
-                  .[0].metadata.container.tags[0]'\
+                -r 'map(select(((.metadata.container.tags | length) > 0) and (.metadata.container.tags | map(test("^sha256-") | not) | all))) |.[0].metadata.container.tags[0]' \
             ) >> $GITHUB_ENV
       - name: Print version
         run: echo $CURRENT_VERSION
