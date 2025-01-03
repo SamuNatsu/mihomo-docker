@@ -34,4 +34,9 @@ jobs:
               repo: context.repo.repo,
               ref: 'refs/tags/${{ env.LATEST_VERSION }}',
               sha: context.sha
-            })
+            });
+            github.rest.repos.createDispatchEvent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              event_type: ''
+            });
