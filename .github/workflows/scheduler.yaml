@@ -1,0 +1,19 @@
+name: Build
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Get versions
+        run: |
+          export LATEST_VERION=$(curl -v https://api.github.com/repos/MetaCubeX/mihomo/releases/latest | jq -r '.tag_name')
+      - name: Print version
+        run: echo $LATEST_VERSION
