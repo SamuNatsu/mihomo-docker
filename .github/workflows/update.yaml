@@ -34,7 +34,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/samunatsu/${{ env.IMAGE_NAME }}:latest,ghcr.io/samunatsu/${{ env.IMAGE_NAME }}:${{ github.event.client_payload.version }}
+          tags: ghcr.io/samunatsu/mihomo-docker:latest,ghcr.io/samunatsu/mihomo-docker:${{ github.event.client_payload.version }}
           labels: ${{ steps.meta.outputs.labels }}
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v2
