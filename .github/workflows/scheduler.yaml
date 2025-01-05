@@ -30,7 +30,7 @@ jobs:
             github.rest.repos.createDispatchEvent({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              event_type: 'push_tag',
+              event_type: 'Elevate version',
               client_payload: {
                 version: '${{ env.LATEST_VERSION }}'
               }
