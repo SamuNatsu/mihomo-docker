@@ -15,7 +15,7 @@ jobs:
       - name: Get versions
         run: |
           echo LATEST_VERSION=$(curl -s https://api.github.com/repos/MetaCubeX/mihomo/releases/latest | jq -r '.tag_name') >> $GITHUB_ENV
-          echo CURRENT_VERSION=$(curl -s https://api.github.com/users/SamuNatsu/mihomo-docker/tags | jq -r '.[0].name') >> $GITHUB_ENV
+          echo CURRENT_VERSION=$(curl -s https://api.github.com/repos/SamuNatsu/mihomo-docker/tags | jq -r '.[0].name') >> $GITHUB_ENV
       - name: Push tag
         if: ${{ env.LATEST_VERSION != env.CURRENT_VERSION }}
         uses: actions/github-script@v7
